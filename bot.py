@@ -13,19 +13,19 @@ def load_pipeline():
 
 pipe = load_pipeline()
 
-#def chatbot():
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+def chatbot():
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
 
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
 
-# ... (History initialization and display code) ...
+    # ... (History initialization and display code) ...
 
-if user_input := st.chat_input("How can I help you?"):
-    st.session_state.messages.append({"role": "user", "content": user_input})
+    if user_input := st.chat_input("How can I help you?"):
+        st.session_state.messages.append({"role": "user", "content": user_input})
     with st.chat_message("user"):
         st.markdown(user_input)
 
@@ -51,7 +51,7 @@ if user_input := st.chat_input("How can I help you?"):
       
         # Display the stream
         full_response = st.write_stream(streamer)
-
+        
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
 
@@ -63,6 +63,6 @@ with tab1:
 with tab2:
     st.subheader("Metrics")
 with tab3:
-    st.subheader("Ask Kyma")
+    def chatbot()
 
 
