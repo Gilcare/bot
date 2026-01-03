@@ -6,19 +6,19 @@ from threading import Thread
 st.markdown('<h1 style="color:#FF46A2; text-align: center;">PeriodIQ✨</h1>', unsafe_allow_html=True)
 st.divider()   
 
+@st.cache_resource
+def load_pipeline():
+    # Adding torch_dtype="auto" or "float16" speeds up GPU inference
+    return pipeline("text-generation", model="Qwen/Qwen2.5-0.5B-Instruct", dtype=torch.float16)
+
+pipe = load_pipeline()
+
 tab1, tab2,tab3 = st.tabs(["Metrics", "Journal", "Ask Kyma"])
 with tab1:
     st.subheader("Metrics")
 with tab2:
     st.subheader("Journal")
 with tab3:
-    @st.cache_resource
-    def load_pipeline():
-        # Adding torch_dtype="auto" or "float16" speeds up GPU inference
-        return pipeline("text-generation", model="Qwen/Qwen2.5-0.5B-Instruct", dtype=torch.float16)
-
-    pipe = load_pipeline()
-
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
