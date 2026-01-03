@@ -6,26 +6,31 @@ from threading import Thread
 st.markdown('<h1 style="color:#FF46A2; text-align: center;">PeriodIQ✨</h1>', unsafe_allow_html=True)
 st.divider()   
 
-@st.cache_resource
+tab1, tab2,tab3 = st.tabs(["Metrics", "Journal", "Ask Kyma"])
+with tab1:
+    st.subheader("Metrics")
+with tab2:
+    st.subheader("Journal")
+with tab3:
+    @st.cache_resource
 def load_pipeline():
     # Adding torch_dtype="auto" or "float16" speeds up GPU inference
     return pipeline("text-generation", model="Qwen/Qwen2.5-0.5B-Instruct", dtype=torch.float16)
 
 pipe = load_pipeline()
 
-def chatbot():
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
 
-    # ... (History initialization and display code) ...
+# ... (History initialization and display code) ...
 
-    if user_input := st.chat_input("How can I help you?"):
-        st.session_state.messages.append({"role": "user", "content": user_input})
+if user_input := st.chat_input("How can I help you?"):
+    st.session_state.messages.append({"role": "user", "content": user_input})
     with st.chat_message("user"):
         st.markdown(user_input)
 
@@ -48,21 +53,14 @@ def chatbot():
         thread = Thread(target=pipe, kwargs=generation_kwargs)
         thread.start()
 
-      
         # Display the stream
         full_response = st.write_stream(streamer)
-        
+
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
+    
 
 
-tab1, tab2, tab3 = st.tabs(["📝 Today", "📊 Metrics","✨Ask Kyma"])
 
-with tab1:
-    st.subheader("Hi")
-with tab2:
-    st.subheader("Metrics")
-with tab3:
-    chatbot()
 
 
