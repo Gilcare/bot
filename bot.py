@@ -13,6 +13,7 @@ def load_pipeline():
 
 pipe = load_pipeline()
 
+#def chatbot():
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -47,7 +48,22 @@ if user_input := st.chat_input("How can I help you?"):
         thread = Thread(target=pipe, kwargs=generation_kwargs)
         thread.start()
 
+      
         # Display the stream
         full_response = st.write_stream(streamer)
 
     st.session_state.messages.append({"role": "assistant", "content": full_response})
+
+
+
+tab1, tab2, tab3 = st.tabs(["📝 Today", "📊 Metrics","✨Ask Kyma"])
+
+    with tab1:
+        with st.expander("**How are you feeling today?**", expanded=False):
+            st.subheader("Hi")
+    with tab2:
+        st.subheader("Metrics")
+    with tab3:
+        st.subheader("Ask Kyma")
+
+
