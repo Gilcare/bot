@@ -58,12 +58,11 @@ if user_input := st.chat_input("How can I help you?"):
 
 tab1, tab2, tab3 = st.tabs(["📝 Today", "📊 Metrics","✨Ask Kyma"])
 
-    with tab1:
-        with st.expander("**How are you feeling today?**", expanded=False):
-            st.subheader("Hi")
-    with tab2:
-        st.subheader("Metrics")
-    with tab3:
-        st.subheader("Ask Kyma")
+with tab1:
+    st.subheader("Hi")
+with tab2:
+    st.subheader("Metrics")
+with tab3:
+    st.subheader("Ask Kyma")
 
 
