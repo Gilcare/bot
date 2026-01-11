@@ -1,5 +1,6 @@
 # chatbot.py
 import asyncio
+import litellm
 import parlant.sdk as p
 
 # Initialize Parlant agent and server
