@@ -2,6 +2,18 @@ import asyncio
 import streamlit as st
 from chatbot import initialize_parlant, get_response  # Import the functions for Parlant
 
+# Load from Streamlit secrets
+os.environ["LITELLM_PROVIDER_API_KEY"] = st.secrets["huggingface_api_key"]
+
+# Optional but recommended
+os.environ["HUGGINGFACE_API_KEY"] = st.secrets["huggingface_api_key"]
+
+# Model
+os.environ["LITELLM_PROVIDER_MODEL_NAME"] = (
+    "huggingface/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B"
+)
+
+
 # Initialize Parlant session if not already done
 def initialize_chatbot():
     if "parlant_session" not in st.session_state:
