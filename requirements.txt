@@ -1,4 +1,7 @@
-transformers
-torch
+
 streamlit
-langchain-huggingface
+parlant
+pymongo
+plotly
+pandas
+torch
