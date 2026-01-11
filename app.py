@@ -1,4 +1,5 @@
 import asyncio
+import litellm
 import streamlit as st
 from chatbot import initialize_parlant, get_response  # Import the functions for Parlant
 
