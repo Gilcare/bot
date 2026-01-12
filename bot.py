@@ -29,7 +29,7 @@ app = st.sidebar.selectbox("Menu",["🧭 Metrics", "🧠Insights","✨ Ask Kyma"
 if app == "🧭 Metrics":
     st.subheader("🧭 Metrics")
 elif app == "🧠Insights":
-    if st.buttons("View Insights"):
+    if st.button("View Insights"):
         image_agent()
 elif app == "✨ Ask Kyma":
     if "messages" not in st.session_state:
