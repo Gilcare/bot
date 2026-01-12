@@ -47,7 +47,7 @@ elif app == "✨ Ask Kyma":
         with st.chat_message("user"):
             st.markdown(user_input)
 
-        with st.chat_message("assistant"):
+        with st.chat_message("assistant", avatar="👩🏼‍🦰"):
             # Setup for streaming
             streamer = TextIteratorStreamer(pipe.tokenizer, skip_prompt=True, skip_special_tokens=True)
         
