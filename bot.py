@@ -10,8 +10,21 @@ st.divider()
 def load_pipeline():
     # Adding torch_dtype="auto" or "float16" speeds up GPU inference
     return pipeline("text-generation", model="Qwen/Qwen2.5-0.5B-Instruct", dtype=torch.float16)
+def image_agent():
+    image_pipe = pipeline("image-text-to-text", model="Qwen/Qwen3-VL-2B-Instruct")
+    add_image = st.file_uploader("Add Image", type = ["csv","jpg", "jpeg", "png"])
+    image_input = [{ 
+        "role": "user", 
+        "content":[
+            {"type": "image", "image": add_image},
+            {"type": "text", "text": "Explain this graph in very simple terms?"}]},]
+    image_pipe(text = image_input)
 
 pipe = load_pipeline()
+
+
+
+
 
 tab1, tab2,tab3 = st.tabs(["Metrics", "Journal", "Ask Kyma"])
 with tab1:
