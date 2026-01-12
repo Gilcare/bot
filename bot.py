@@ -20,18 +20,18 @@ def image_agent():
             {"type": "text", "text": "Explain this graph in very simple terms?"}]},]
     image_pipe(text = image_input)
 
-pipe = load_pipeline()
+#pipe = load_pipeline()
 
 
 
 
-
-tab1, tab2,tab3 = st.tabs(["Metrics", "Journal", "Ask Kyma"])
-with tab1:
-    st.subheader("Metrics")
-with tab2:
-    st.subheader("Journal")
-with tab3:
+app = st.sidebar.selectbox("Menu",["🧭 Metrics", "🧠Insights","✨ Ask Kyma"])
+if app == "🧭 Metrics":
+    st.subheader("🧭 Metrics")
+elif app == "🧠Insights":
+    if st.buttons("View Insights"):
+        image_agent()
+elif app == "✨ Ask Kyma":
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
