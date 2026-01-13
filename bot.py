@@ -18,10 +18,8 @@ def image_agent():
         "content":[
             {"type": "image", "image": add_image},
             {"type": "text", "text": "Explain this graph in very simple terms?"}]},]
-    results = image_pipe(text = image_input)
-    output_text = results[0]["generated_text"]
-    st.subheader("Model Insights:")
-    st.write(output_text)
+    st.write(image_pipe(text = image_input))
+    
 
 #pipe = load_pipeline()
 
