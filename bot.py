@@ -16,7 +16,7 @@ def image_agent():
     if "image_pipe" not in st.session_state:
         with st.spinner("Loading Vision Model..."):
             # Ensure model name is correct (e.g., Qwen2-VL or Qwen2.5-VL)
-            st.session_state.image_pipe = pipeline("image-text-to-text", model="Qwen/Qwen2-VL-2B-Instruct")
+            st.session_state.image_pipe = pipeline("image-text-to-text", model="Qwen/Qwen3-VL-2B-Instruct")
     
     add_image = st.file_uploader("Add Image", type=["jpg", "jpeg", "png"])
     
