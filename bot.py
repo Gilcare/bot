@@ -11,7 +11,7 @@ st.title("PeriodIQ✨")
 @st.cache_resource
 def get_pipe():
     # Loading in bfloat16 to save memory
-    return pipeline("image-text-to-text", model="Qwen/Qwen3-VL-2B-Instruct", torch_dtype=torch.bfloat16)
+    return pipeline("image-text-to-text", model="Qwen/Qwen3-VL-2B-Instruct", dtype=torch.bfloat16)
 
 pipe = get_pipe()
 
