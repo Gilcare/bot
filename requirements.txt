@@ -5,6 +5,7 @@ parlant
 pymongo
 plotly
 pandas
-torch
-U-transformers
+transformers>=4.48.0
+torch>=2.4.0
+accelerate>=1.0.0
 Torchvision
