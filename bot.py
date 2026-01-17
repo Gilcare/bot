@@ -8,10 +8,9 @@ st.markdown('<h1 style="color:#FF46A2; text-align: center;">PeriodIQ✨</h1>', u
 st.divider()   
 
 HF_TOKEN = st.secrets.HF_TOKEN
-
+added_photo = st.file_uploader("Add Image",type = ["jpg", "jpeg", "png"])
 
 pipe = pipeline("image-text-to-text", model="google/medgemma-1.5-4b-it")
-added_photo = st.file_uploader("Add Image",type = ["jpg", "jpeg", "png"])
 messages = [
     {
         "role": "user",
