@@ -6,5 +6,5 @@ pymongo
 plotly
 pandas
 torch
-transformers
+U-transformers
 Torchvision
