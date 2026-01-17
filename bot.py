@@ -1,27 +1,39 @@
 import streamlit as st
 import torch
-from huggingface_hub import login
 from transformers import pipeline
-#from transformers import AutoProcessor, AutoModelForImageTextToText
-from threading import Thread
 
-st.markdown('<h1 style="color:#FF46A2; text-align: center;">PeriodIQ✨</h1>', unsafe_allow_html=True)
-st.divider()   
 
 HF_TOKEN = st.secrets.HF_TOKEN
 
 
+st.title("PeriodIQ✨")
+
+@st.cache_resource
+def get_pipe():
+    # Loading in bfloat16 to save memory
+    return pipeline("image-text-to-text", model="Qwen/Qwen3-VL-2B-Instruct", torch_dtype=torch.bfloat16)
+
+pipe = get_pipe()
+
+# Use file uploader instead of a hardcoded URL to make it interactive
+added_photo = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
+
+if added_photo:
+    # Use the uploaded file object directly
+    messages = [
+        {
+            "role": "user",
+            "content": [
+                {"type": "image", "image": added_photo},
+                {"type": "text", "text": "What is the graph saying?"}
+            ]
+        },
+    ]
+    
+    with st.spinner("Analyzing..."):
+        result = pipe(text=messages)
+        st.write(result[0]['generated_text'])
 
 
 
-pipe = pipeline("image-text-to-text", model="Qwen/Qwen3-VL-2B-Instruct")
-messages = [
-    {
-        "role": "user",
-        "content": [
-            {"type": "image", "url": "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG"},
-            {"type": "text", "text": "What animal is on the candy?"}
-        ]
-    },
-]
-pipe(text=messages)
+
