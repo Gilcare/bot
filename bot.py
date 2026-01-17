@@ -7,7 +7,7 @@ from threading import Thread
 st.markdown('<h1 style="color:#FF46A2; text-align: center;">PeriodIQ✨</h1>', unsafe_allow_html=True)
 st.divider()   
 
-HF_TOKEN = st.secrets.huggingface_api_key
+HF_TOKEN = st.secrets.HF_TOKEN
 
 
 pipe = pipeline("image-text-to-text", model="google/medgemma-1.5-4b-it")
