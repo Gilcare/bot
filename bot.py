@@ -10,7 +10,7 @@ st.divider()
 HF_TOKEN = st.secrets.HF_TOKEN
 added_photo = st.file_uploader("Add Image",type = ["jpg", "jpeg", "png"])
 
-pipe = pipeline("image-text-to-text", model="google/medgemma-1.5-4b-it")
+pipe = pipeline("image-to-text", model="google/medgemma-1.5-4b-it")
 messages = [
     {
         "role": "user",
